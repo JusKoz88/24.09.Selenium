@@ -15,7 +15,14 @@ driver = webdriver.Chrome()
 driver.get('https://www.saucedemo.com/')
 driver.maximize_window()
 driver.set_window_size(1600,800)
-username_field = driver.find_element('xpath','//*[@id="user-name"]')
+time.sleep(4)
+try:
+    username_field = driver.find_element('xpath','//*[@id="user-named"]')
+except:
+    print('nie znaleziono pola "user-named" po xpath. Szukam po nazwie')
+    username_field = driver.find_element('name', 'user-name')
+
+username_field.clear()
 username_field.send_keys('standard_user')
 password_field = driver.find_element(By.XPATH,'//*[@id="password"]')
 password_field.send_keys('secret_sauce')
