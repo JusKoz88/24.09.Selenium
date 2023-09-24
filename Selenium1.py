@@ -28,7 +28,10 @@ password_field = driver.find_element(By.XPATH,'//*[@id="password"]')
 password_field.send_keys('secret_sauce')
 
 login_button = driver.find_element(By.NAME,'login-button')
-login_button.click()
+if not login_button.get_attribute('disable'):
+    login_button.click()
+else:
+    print('przycisk nieaktywny')
 time.sleep(3)
 driver.get_screenshot_as_file('screen.png')
 make_screenshot(driver)
